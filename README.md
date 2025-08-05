@@ -86,5 +86,5 @@ The application is configured through `DTOS.Core.exe.config`.
 `BackupCriticalFiles` copies important files to `BackupPath`. Each run rewrites `BackupPath\\Last` and refreshes `BackupPath\\PreviousMonth` only if the existing backup is older than 30 days. Additional files and folders are listed in `BackupListFile`, located beside the executable. In the list, absolute entries such as `C:\\Data\\config.xml` are copied as-is, while relative entries like `configs\\settings.xml` resolve against `TestFilesPath`. Entries can also target files inside the test files path, for example `D:\\Conf\\extra\\profile.xml` when `TestFilesPath` is `D:\Conf`.
 
 ## Networking Scheme
-![Network Scheme](https://github.com/ramonium/DTOS_v3/blob/master/Network%20Diagram.png) 
+![Network Scheme]((https://github.com/ramonium/DTOS-Help/blob/main/Network%20Diagram.png)) 
 
