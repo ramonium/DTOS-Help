@@ -1,17 +1,5 @@
 # DTOS - Prod v3.1.0
 
-## Change Log
-- Added initialization logging with optional serial scanner support and settings validation.
-- Introduced IP address reachability checks and detailed network logging.
-- Enhanced splash screen with initialization log display, version and customer info, color-coded log list, and Altalus branding.
-- Integrated licensing API and replaced direct username retrieval.
-- Implemented log archiving and backup utilities with configurable grace periods, per-file result logging, and relative path resolution.
-- Expanded backup to include template and base configuration files while verifying required directories.
-- Initialized log manager before archiving and improved error and path logging for reliability.
-- Allowed PLC IP to be configured and added detailed PLC connection error logging.
-- Added networking diagram and updated documentation.
-- Added optional startup script executed before the main window; can be disabled or skipped if missing.
-
 ## Configuration
 The application is configured through `DTOS.Core.exe.config`.
 
@@ -85,6 +73,27 @@ The application is configured through `DTOS.Core.exe.config`.
 ## Backup
 `BackupCriticalFiles` copies important files to `BackupPath`. Each run rewrites `BackupPath\\Last` and refreshes `BackupPath\\PreviousMonth` only if the existing backup is older than 30 days. Additional files and folders are listed in `BackupListFile`, located beside the executable. In the list, absolute entries such as `C:\\Data\\config.xml` are copied as-is, while relative entries like `configs\\settings.xml` resolve against `TestFilesPath`. Entries can also target files inside the test files path, for example `D:\\Conf\\extra\\profile.xml` when `TestFilesPath` is `D:\Conf`.
 
-## Networking Scheme
-![Network Scheme](https://raw.githubusercontent.com/ramonium/DTOS-Help/main/Network%20Diagram.png)
+## Camera Diagnostics and Error Messages
+The platform now reports camera connectivity issues with detailed messages to help maintenance teams troubleshoot. Each message originates from the camera's lifecycle (initialization, program execution, and disposal) and includes a short description plus the underlying exception text.
 
+- **Connection lost during initialization** – The station could not establish a link to the selected camera. Verify Ethernet cabling, IP configuration, and that the sensor is reachable in Keyence IV‑Navigator.
+- **Error initializing camera** – A non‑network related problem prevented startup (for example, the camera was powered off or returned an unexpected status). Reboot the sensor or check IV‑Navigator for additional diagnostics.
+- **Connection lost while running program** – Communication dropped while uploading or executing the requested program. Ensure the program exists on the sensor and the network remains stable during execution.
+- **Error running program** – The camera rejected the requested program. Confirm the program is deployed correctly in IV‑Navigator and matches the version expected by the station.
+- **Connection lost during dispose** – The link to the camera was interrupted while releasing resources. This typically indicates that the device powered down unexpectedly or the network link was severed.
+- **Error disposing camera** – An unexpected exception occurred while cleaning up camera resources. Review the exception text and restart the sensor if necessary.
+
+## Networking Scheme
+![Network Scheme](https://github.com/ramonium/DTOS_v3/blob/master/Network%20Diagram.png) 
+
+## Change Log
+- Added initialization logging with optional serial scanner support and settings validation.
+- Introduced IP address reachability checks and detailed network logging.
+- Enhanced splash screen with initialization log display, version and customer info and color-coded log list.
+- Integrated licensing API and replaced direct username retrieval.
+- Implemented log archiving and backup utilities with configurable grace periods, per-file result logging, and relative path resolution.
+- Expanded backup to include template and base configuration files while verifying required directories.
+- Initialized log manager before archiving and improved error and path logging for reliability.
+- Allowed PLC IP to be configured and added detailed PLC connection error logging.
+- Added optional startup script executed before the main window; can be disabled or skipped if missing.
+- Added networking diagram and updated documentation.
