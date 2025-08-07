@@ -44,7 +44,12 @@ The application is configured through `DTOS.Core.exe.config`.
 - `LocalNetworkIP`: IP address of the local machine ( Station 1 ).
 - `StartBtnAddress`: PLC address for the start button.
 - `EnableShippingRobot`: enables Shipping Client control ( Station 1 ).
+### Cameras
+Each entry in the `Cameras` setting uses the format `camX:IP:Port:Ref1,Ref2,...`. The camera name (`cam1`, `cam2`, etc.), IP address and port are followed by the list of available programs (camera refs) that can be executed on that sensor. These refs are referenced in the reference database (`Prog1Cam1`, `Prog1Cam2`, etc.) to select which program runs for each part. Use `None` when a camera is not required for a step.
 
+#### Troubleshooting
+- During startup the initialization log checks each camera's reachability. A red entry such as `cam1 (192.168.254.200) - FAIL: Check cam1 connectivity` indicates the camera is unreachable.
+- If the Camera Manager fails to initialize or a program cannot be executed, messages like `Connection lost to camera cam1 during initialization` or `Error running program OSHAPE on camera cam2` appear in the main view. Verify network connectivity, the program list on the Keyence IV-Navigator and camera power before retrying.
 ### Printer Connectivity
 - During startup, `ValidateNetworkConnectivity()` pings the configured printers before initializing the printer manager.
 - `FinishedGoodPrinter` and `ACPlugPrinter` determine whether each printer is required. When a flag is `false`, unreachable printers are logged but do not cause initialization to fail.
