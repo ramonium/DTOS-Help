@@ -84,7 +84,7 @@ The platform now reports camera connectivity issues with detailed messages to he
 - **Error disposing camera** – An unexpected exception occurred while cleaning up camera resources. Review the exception text and restart the sensor if necessary.
 
 ## Networking Scheme
-![Network Scheme](https://github.com/ramonium/DTOS_v3/blob/master/Network%20Diagram.png) 
+![Network Scheme](https://raw.githubusercontent.com/ramonium/DTOS-Help/main/Network%20Diagram.png)
 
 ## Change Log
 - Added initialization logging with optional serial scanner support and settings validation.
